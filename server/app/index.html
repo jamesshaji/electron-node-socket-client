@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Server window</title>
+    <base href="./">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script>
+        delete window.exports;
+        delete window.module;
+    </script>
+
+    <link rel="stylesheet" href="styels.css">
+
+<body>
+    <span class="font" id="serverConnectionDetails">Server</span>
+    <div class="container">
+        <div class="row">
+            <label for="newIPAddress">New IP Address</label>
+            <input type="text" id="newIPAddress" value="localhost">
+        </div>
+        <div class="row">
+            <label for="newPortNumber">New Port Number</label>
+            <input type="text" id="newPortNumber" value='5000'>
+        </div>
+        <button class="button" id="changeSocketDetails">Set Connection Details</button>
+        <span id="textHolder">Server not yet started</span>
+    </div>
+    <div>
+        <div id="colA">
+            <div class="container">
+                <textarea id="textMessage" class="logTextArea textarea"></textarea>
+                <button onclick="sendMessage()">Send Message</button>
+            </div>
+            <div class="container">
+                <input type="radio" id="p" name="gear" value="P" onchange='prndSetup()'>
+                <label for="p">P</label><br>
+                <input type="radio" id="R" name="gear" value="R" onchange='prndSetup()'>
+                <label for="R">R</label><br>
+                <input type="radio" id="N" name="gear" value="N" onchange='prndSetup()'>
+                <label for="N">N</label>
+                <input type="radio" id="D" name="gear" value="D" onchange='prndSetup()'>
+                <label for="D">D</label>
+            </div>
+        </div>
+        <div id="colB">
+            <span class="font">Log data</span>
+            <div class="container">
+                <textarea id="log" rows="20" class="logTextArea textarea" readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

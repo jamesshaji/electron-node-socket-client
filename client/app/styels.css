@@ -1,0 +1,102 @@
+body {
+    font-family: sans-serif;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h5,
+h6,
+ul {
+    margin: 0;
+    font-weight: normal;
+}
+
+html {
+    font-size: 1vw;
+    color: white;
+    background-color: black;
+}
+
+ul {
+    padding: 0;
+}
+
+#colA {
+    width: 66%;
+    min-width: 200px;
+    display: inline-block;
+    padding: 2.2rem 1rem;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: 16%;
+    background-position: center top;
+    border: solid rgb(43, 36, 36) 1px;
+}
+
+#colB {
+    width: 33.3%;
+    min-width: 150px;
+    display: inline-block;
+    padding: 2.2rem 1rem;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: 16%;
+    background-position: center top;
+    border: solid rgb(43, 36, 36) 1px;
+    vertical-align: top;
+}
+
+.font {
+    font-family: sans-serif;
+    font-size: calc(.5rem + 10px);
+    color: white;
+}
+
+label {
+    font-family: sans-serif;
+    font-size: calc(.5rem + 6px);
+    color: white;
+}
+
+.button {
+    background-color: #555555;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 5px;
+}
+
+.container {
+    width: 100%;
+    display: inline-block;
+    margin: 2px;
+    border-bottom: 1px solid rgb(43, 36, 36);
+}
+
+.row {
+    display: inline-block;
+    width: 150px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    height: 25px;
+    background-color: rgb(14, 22, 14);
+    margin: 2px;
+    border: 1px solid cadetblue;
+}
+
+.logTextArea {
+    width: 95%;
+}
+
+.textarea {
+    color: white;
+    background-color: rgb(32, 25, 32);
+}
