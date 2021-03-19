@@ -16,7 +16,7 @@ let win;
 
 let PORT = 5000;
 let ADDRESS = '127.0.0.1';
-let server;
+
 
 const net = require('net');
 let socket;
@@ -32,7 +32,7 @@ function createWindow() {
 
     expressServer.startExpressServer(win);
     win.loadURL('http://localhost:' + clientPort);
-    win.webContents.openDevTools();
+    //win.webContents.openDevTools();
     win.removeMenu()
 
     ipcMain.on('messageToIPC', (event, arg) => {
@@ -131,3 +131,22 @@ function onClientConnected(soc) {
     });
 }
 /////////////////////Socket connection//////////////////////////////////////////////
+
+var WebSocketServer = require('ws').Server,
+    wss = new WebSocketServer({port: 9898}),
+    websocketClients=[];
+
+wss.on('connection', function(ws) {
+    websocketClients.push(ws);
+    ws.on('message', function(message) {
+        //sendAll(message);
+        for (var i=0; i<websocketClients.length; i++) {
+
+            if(websocketClients[i] != ws){
+                websocketClients[i].send("Message: " + message);
+            }else{
+                console.log("Matched client who send ")
+            }  
+        }
+    });
+});
