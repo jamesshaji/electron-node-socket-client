@@ -12,7 +12,6 @@ ipcRenderer.on('socketConnectionStatus', (e, data)=>{
 })
 
 function sendMessage() {
-    console.log(document.getElementById('textMessage').value);
     ipcRenderer.send('messageToIPC', document.getElementById('textMessage').value);
 }
 
@@ -37,3 +36,25 @@ function updateSocketHandler(event) {
     document.getElementById('textHolder').textContent = "Server listening to "+ip+":"+portNo;
     ipcRenderer.send("updateSocket",ip+"$"+portNo+"$"+clientName);
 }
+
+document.getElementById('clearLog').addEventListener('click', ()=>{
+    logTextArea.value = '';
+})
+
+
+////Websocket
+//let sendSocketDataBtn = document.getElementById('sendSocketDataButton');
+
+    sendSocketDataBtn.addEventListener('click', () => {
+      ws.send('Hi this is web client.');
+    })
+
+    const ws = new WebSocket('ws://localhost:9898/');
+    ws.onopen = function () {
+      console.log('WebSocket Client Connected');
+      //ws.send('Hi this is web client.');
+    };
+    ws.onmessage = function (e) {
+      //console.log("Received: '" + e.data + "'");
+      document.getElementById('socketContent').textContent += e.data  + "\n"
+    };
