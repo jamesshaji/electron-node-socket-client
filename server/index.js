@@ -32,7 +32,7 @@ function createWindow() {
 
     expressServer.startExpressServer(win);
     win.loadURL('http://localhost:' + clientPort);
-    //win.webContents.openDevTools();
+    win.webContents.openDevTools();
     win.removeMenu()
 
     ipcMain.on('messageToIPC', (event, arg) => {
@@ -80,7 +80,7 @@ function startSocketServer() {
 
 
     server.on('ready', () => {
-        console.log("server ready to listen....");
+        console.log("server listening....");
     })
 }
 
@@ -98,7 +98,7 @@ function onClientConnected(soc) {
 
     socket.on('data', function (data) {
         let m = data.toString().replace(/[\n\r]*$/, '');
-
+        console.log("Got data from client....");
         for (let i = 0; i < clientList.length; i++) {
             if (clientList[i].s != soc) {
                 try {
@@ -121,10 +121,8 @@ function onClientConnected(soc) {
     })
 
     socket.on('end', function () {
-        console.log(`disconnected.` + socket);
         for (let i = 0; i < clientList.length; i++) {
             if (clientList[i].s == socket) {
-                console.log("Found a match....");
                 clientList.splice(i, 1);
             }
         }
@@ -145,7 +143,7 @@ wss.on('connection', function(ws) {
             if(websocketClients[i] != ws){
                 websocketClients[i].send("Message: " + message);
             }else{
-                console.log("Matched client who send ")
+                //console.log("Matched client who send ")
             }  
         }
     });
