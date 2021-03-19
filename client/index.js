@@ -69,13 +69,10 @@ socket = new net.Socket();
 
 socket.on("data", function(data) {
     let m = data.toString().replace(/[\n\r]*$/, '');
-    //socket.write('received message ' + m);
-    console.log("Received data in Server " + m);
     win.webContents.send('messageFromIPC', m);
 });
 
 socket.on("error", function(err) {
-    console.dir(err);
     if(win)
     win.webContents.send('socketConnectionStatus', "Attempting connection to server on "+ HOST+":"+PORT);
 
@@ -96,7 +93,6 @@ socket.on("close", function(err) {
 function initSocket(clientName) {
     socket.removeAllListeners('connect');
     socket.connect(PORT, HOST, function() {
-        console.log("socket connected " + socket.remoteAddress);
         socket.write("clientName:"+clientName);
     });
 }
